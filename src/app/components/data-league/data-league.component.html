@@ -1,0 +1,54 @@
+<div class="panel-header panel-header-lg">
+  <div class="row">
+    <div class="col-6 mx-auto">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">
+            {{ competition.name }}
+          </div>
+
+          <div class="card-text">
+            {{ competition.area.name }}
+          </div>
+
+          <div class="card-text">
+            <small>
+              Last Updated : {{ competition.lastUpdated | date }}
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main-content">
+  <div class="card-content mt-3">
+    <div class="card-body">
+      <nav ngbNav #nav="ngbNav" class="nav-tabs">
+        <ng-container ngbNavItem>
+          <a ngbNavLink>Completed</a>
+          <ng-template ngbNavContent>
+            <app-list-matches type='FINISHED' [matches]='matches'></app-list-matches>
+
+          </ng-template>
+        </ng-container>
+        <ng-container ngbNavItem>
+          <a ngbNavLink>Pending</a>
+          <ng-template ngbNavContent>
+            <app-list-matches type='SCHEDULED' [matches]='matches'></app-list-matches>
+          </ng-template>
+        </ng-container>
+
+        <ng-container ngbNavItem>
+          <a ngbNavLink>Others</a>
+          <ng-template ngbNavContent>
+            <app-list-matches type='OTHERS' [matches]='matches'></app-list-matches>
+          </ng-template>
+        </ng-container>
+      </nav>
+
+      <div [ngbNavOutlet]="nav" class="mt-2"></div>
+    </div>
+  </div>
+</div>

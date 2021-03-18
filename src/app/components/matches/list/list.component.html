@@ -1,0 +1,72 @@
+<div class="row text-left">
+  <div class="col-12">
+    <div class="card-content">
+      <div class="card-body">
+
+        <div class="d-flex justify-content-between">
+          <div class="form-group form-inline">
+            Search: <input class="form-control ml-2" (keyup)="search($event.target.value)" type="text" name="searchTerm" />
+          </div>
+
+          <div>
+            <p> <strong>Total:</strong> {{total}} </p>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table  class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th scope="col" class="text-center">Competition</th>
+                <th scope="col">Season</th>
+                <th scope="col">Local</th>
+                <th scope="col">Visit</th>
+                <th scope="col">Winner</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let m of dataMatches | paginate: {itemsPerPage:14, currentPage: p}">
+                <td>
+                  <div class="row">
+                    <div class="col">
+                      <img class="img-fluid" style="width: 40px; height: 40px;" src="{{m.competition.area.ensignUrl}}" alt="">
+                    </div>
+                    <div class="col">
+                      {{m.competition.name}}
+                    </div>
+
+                  </div>
+
+                </td>
+
+                <td> {{m.season.startDate | date:'shortDate'}} - {{m.season.endDate | date:'shortDate'}} </td>
+
+                <td> {{m.homeTeam.name}} </td>
+                <td> {{m.awayTeam.name}} </td>
+
+                <td *ngIf='type === "FINISHED"'>
+                  {{
+
+                   ( m.score.winner === 'AWAY_TEAM' ? m.awayTeam.name : m.homeTeam.name) || ( m.score.winner === 'DRAW' ? 'Draw' : '')
+
+                  }}
+
+                </td>
+
+                <td *ngIf="type === 'SCHEDULED'">
+                   Pending
+                </td>
+
+              </tr>
+            </tbody>
+          </table>
+
+
+        </div>
+
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+      </div>
+    </div>
+  </div>
+</div>

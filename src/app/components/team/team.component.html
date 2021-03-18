@@ -1,0 +1,123 @@
+<div class="panel-header panel-header-lg">
+  <div class="row">
+    <div class="col-6 mx-auto">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">
+            {{ team.name }}
+          </div>
+
+          <div class="card-text">
+            {{ team.venue }}
+          </div>
+
+          <div class="card-text">
+            <small>
+              Founded : {{ team.founded | date }}
+            </small>
+            <br>
+
+            <button (click)="redirect(team.id)" class="btn btn-outline-info">See matches</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main-content">
+  <div class="row container mx-auto">
+    <div class="col-3">
+      <div style="border-radius: 100%;" class="card">
+        <img style="border-radius: 100%;" src={{team.crestUrl}} alt="" class="img-fluid">
+      </div>
+    </div>
+
+    <div class="col">
+      <h4 class="text-center">Squad</h4>
+      <div class="table-responsive">
+        <table  class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Position</th>
+              <th scope="col">Nationality</th>
+              <th scope="col">Birthday</th>
+              <td></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let m of team.squad | paginate: {itemsPerPage:6, currentPage: p}">
+              <td> {{m.name}} </td>
+              <td> {{m.position}} </td>
+              <td> {{m.nationality}} </td>
+              <td> {{m.dateOfBirth | date:'shortDate'}} </td>
+              <td>
+                <button (click)="player(historyPlayer,m.id)" class="btn btn-outline-primary">History</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #historyPlayer let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title"> {{playerHistory.player.name}} </h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row container">
+      <div class="col-6">
+        <h5> Info Player </h5>
+        <p><strong>Name</strong>: {{playerHistory.player.name}}</p>
+        <br />
+        <p><strong>Born</strong>: {{playerHistory.player.countryOfBirth}}</p>
+        <br>
+        <p><strong>Nationality</strong>: {{playerHistory.player.nationality}}</p>
+        <br>
+        <p><strong>Position</strong> {{playerHistory.player.position}}</p>
+
+      </div>
+      <div class="col">
+        <table  class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Local</th>
+              <th scope="col">Visit</th>
+              <th scope="col">Winner</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let m of playerHistory.matches | slice:0:10">
+              <td> {{m.homeTeam.name}} </td>
+              <td> {{m.awayTeam.name}} </td>
+              <td *ngIf="m.score.winner === 'AWAY_TEAM'">
+                {{ m.awayTeam.name }}
+              </td>
+
+              <td *ngIf="m.score.winner === 'DRAW'">
+                {{ 'Draw' }}
+              </td>
+
+              <td *ngIf="m.score.winner === 'HOME_TEAM'">
+                {{ m.homeTeam.name }}
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+  </div>
+</ng-template>

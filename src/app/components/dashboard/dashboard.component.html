@@ -1,0 +1,97 @@
+<div class="panel-header panel-header-lg pt-5">
+  <h3 class="text-white text-center">Top Leagues</h3>
+  <div class="row container mx-auto">
+    <div class="col" *ngFor="let tp of topLeagues">
+      <div class="card" style="cursor: pointer;" >
+        <div class="card-body" >
+          <div class="card-title">
+            <p><strong>League:</strong> {{ tp.name }}</p>
+            <br />
+            <p><strong>Country:</strong> {{ tp.area.name }}</p>
+          </div>
+
+          <div class="card-text">
+            <img style="width: 100%; height: 40px;"
+            [src]="!tp.area.ensignUrl ? DEFAULT_PHOTO : tp.area.ensignUrl"
+            alt=""
+          />
+          </div>
+        </div>
+
+
+
+        <div class="row container">
+          <div class="col-6">
+            <button (click)="save(tp)" class="btn btn-primary">
+              Save
+            </button>
+          </div>
+
+          <div class="col-6">
+            <button routerLink="/home/league/{{tp.code}}" class="btn btn-info">
+              More Info
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main-content">
+  <div  class="float-left mt-3">
+      <br>
+     <input type="text" placeholder="Search League" (keyup)="filterLeagues($event.target.value)" class="form-control">
+  </div>
+  <br>
+
+  <div class="row mt-5">
+    <div
+      *ngFor="let l of leaguesArray | paginate: { itemsPerPage: 14, currentPage: p }"
+      class="col-3"
+    >
+      <div style="cursor: pointer"  class="card">
+        <div class="card-body" >
+          <div class="card-title">
+            <p><strong>League:</strong> {{ l.name }}</p>
+            <br />
+            <p><strong>Country:</strong> {{ l.area.name }}</p>
+          </div>
+          <div class="card-description">
+            <img
+              [src]="!l.area.ensignUrl ? DEFAULT_PHOTO : l.area.ensignUrl"
+              alt=""
+            />
+          </div>
+        </div>
+
+        <div class="row container">
+          <div class="col-6">
+            <button (click)="save(l)" class="btn btn-primary">
+              Save
+            </button>
+          </div>
+
+          <div class="col-6">
+            <button (click)="redirect(l.code)" class="btn btn-info">
+              More Info
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>

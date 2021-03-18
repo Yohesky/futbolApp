@@ -1,0 +1,51 @@
+<div class="panel-header panel-header-lg">
+  <h3 class="text-white text-center">My Teams</h3>
+</div>
+
+<div class="main-content">
+  <div class="row container mx-auto">
+    <div class="col" *ngFor="let tp of teams | paginate: { itemsPerPage: 6, currentPage: p }">
+      <div  class="card" style="cursor: pointer">
+
+        <div class="card-header text-center">
+          <img src="{{tp.crestUrl}}" style="border-radius: 100%; width: 50px; height: auto;" alt="">
+        </div>
+
+        <div   class=" card-body">
+          <div class="card-title">
+            <p><strong>Team:</strong> {{ tp.name }}</p>
+            <br />
+            <p><strong>Short Name:</strong> {{ tp.shortName }}</p>
+            <br />
+            <p><strong>Stadium:</strong> {{ tp.venue }}</p>
+          </div>
+        </div>
+
+        <div class="row container">
+          <div class="col-6">
+            <button (click)="deleteTeam(tp.idTeam)" class="btn btn-danger">
+              Delete <i class="fas fa-trash"></i>
+            </button>
+          </div>
+
+          <div class="col-6">
+            <button (click)="redirect(tp.idTeam)" class="btn btn-info">
+              More Info
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>

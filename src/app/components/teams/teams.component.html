@@ -1,0 +1,98 @@
+<div class="panel-header panel-header-lg">
+  <div class="row mx-auto">
+    <div class="col-6">
+      <div class="card">
+        <div class="card-header p-3">
+          <h4 class="card-title">Search country</h4>
+          <input
+            name="team"
+            [(ngModel)]="team"
+            type="text"
+            class="form-control"
+          />
+          <small
+            >Type the country of your team, then press
+            <strong>'search'</strong> to find the league of your team, then
+            choose league and team</small
+          >
+          <br />
+          <button (click)="searchTeam()" class="btn btn-lg btn-outline-primary">
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main-content">
+  <div class="row container mx-auto">
+    <ng-container *ngIf="!select">
+      <div class="col-2" *ngFor="let tp of leagues">
+        <div  class="card" style="cursor: pointer">
+
+          <div class="card-body">
+            <div class="card-title">
+              <p><strong>League:</strong> {{ tp.name }}</p>
+              <br />
+              <p><strong>Country:</strong> {{ tp.area.name }}</p>
+            </div>
+
+            <div class="card-text">
+              <img
+                style="width: 100%; height: 40px"
+                [src]="!tp.area.ensignUrl ? DEFAULT_PHOTO : tp.area.ensignUrl"
+                alt=""
+              />
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <button (click)="selected(tp.id)" class="btn btn-primary">
+              See league
+            </button>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="select">
+      <div class="col-3" *ngFor="let tp of teamsOfLeagues">
+        <div class="card" style="cursor: pointer">
+
+          <div class="card-header text-center">
+            <img src="{{tp.crestUrl}}" style="border-radius: 100%; width: 50px; height: auto;" alt="">
+          </div>
+
+          <div class="card-body">
+            <div class="card-title">
+              <p><strong>Team:</strong> {{ tp.name }}</p>
+              <br />
+              <p><strong>Short Name:</strong> {{ tp.shortName }}</p>
+              <br />
+              <p><strong>Stadium:</strong> {{ tp.venue }}</p>
+            </div>
+          </div>
+
+          <div class="card-footer">
+
+          </div>
+
+          <div class="row container">
+            <div class="col-6">
+              <button (click)="comprobe(tp)" class="btn btn-info">
+                Add to Favorite
+              </button>
+
+            </div>
+
+            <div class="col-6">
+              <button (click)="redirect(tp.id)" class="btn btn-info">
+                More Info
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

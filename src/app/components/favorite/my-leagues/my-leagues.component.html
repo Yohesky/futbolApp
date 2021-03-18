@@ -1,0 +1,55 @@
+<div class="panel-header panel-header-lg">
+    <h3 class="text-white text-center">My Leagues</h3>
+</div>
+
+<div class="main-content">
+  <div class="row container mx-auto">
+    <div class="row">
+      <div
+        *ngFor="let l of leagues | paginate: { itemsPerPage: 14, currentPage: p }"
+        class="col"
+      >
+        <div style="cursor: pointer"  class="card">
+          <div class="card-body" >
+            <div class="card-title">
+              <p><strong>League:</strong> {{ l.name }}</p>
+              <br />
+              <p><strong>Country:</strong> {{ l.area.name }}</p>
+            </div>
+            <div class="card-description">
+              <img
+                [src]="!l.area.ensignUrl ? DEFAULT_PHOTO : l.area.ensignUrl"
+                alt=""
+              />
+            </div>
+          </div>
+
+
+          <div class="row container">
+            <div class="col-6">
+              <button (click)="deleteLeague(l.idLeague)" class="btn btn-danger">Delete</button>
+
+            </div>
+
+            <div class="col-6">
+              <button (click)="redirect(l.code)" class="btn btn-info">
+                More Info
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>

@@ -1,0 +1,28 @@
+<div class="panel-header panel-header-lg">
+
+</div>
+
+<div class="main-content">
+  <div class="card-content mt-3">
+    <div class="card-body">
+      <nav ngbNav #nav="ngbNav" class="nav-tabs">
+        <ng-container ngbNavItem>
+          <a ngbNavLink>Completed</a>
+          <ng-template ngbNavContent>
+            <app-list type='FINISHED' [matches]='matches'></app-list>
+
+          </ng-template>
+        </ng-container>
+        <ng-container ngbNavItem>
+          <a ngbNavLink>Pending</a>
+          <ng-template ngbNavContent>
+            <app-list type='SCHEDULED' [matches]='matches'></app-list>
+          </ng-template>
+        </ng-container>
+
+      </nav>
+
+      <div [ngbNavOutlet]="nav" class="mt-2"></div>
+    </div>
+  </div>
+</div>

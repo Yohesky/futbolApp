@@ -18,7 +18,7 @@ export class TokenService implements HttpInterceptor {
 
 
 
-    if(req.url.includes("https://api-futbol.herokuapp.com/api/")){
+    if(req.url.includes("https://api-futbol.herokuapp.com/api/") || req.url.includes("http://localhost:3000/api/")){
 
       let headers = new HttpHeaders()
       .append('Authorization', this.idUser)

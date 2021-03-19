@@ -1,6 +1,6 @@
 <div class="panel-header panel-header-lg">
   <div class="row mx-auto">
-    <div class="col-6">
+    <div class="col-md-6 col-xs-12">
       <div class="card">
         <div class="card-header p-3">
           <h4 class="card-title">Search country</h4>
@@ -28,7 +28,7 @@
 <div class="main-content">
   <div class="row container mx-auto">
     <ng-container *ngIf="!select">
-      <div class="col-2" *ngFor="let tp of leagues">
+      <div class="col-md-3 col-xs-12" *ngFor="let tp of leagues">
         <div  class="card" style="cursor: pointer">
 
           <div class="card-body">
@@ -56,7 +56,7 @@
       </div>
     </ng-container>
     <ng-container *ngIf="select">
-      <div class="col-3" *ngFor="let tp of teamsOfLeagues">
+      <div class="col-md-3 col-xs-12" *ngFor="let tp of teamsOfLeagues">
         <div class="card" style="cursor: pointer">
 
           <div class="card-header text-center">

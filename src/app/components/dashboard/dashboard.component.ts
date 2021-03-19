@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '@auth0/auth0-angular';
 import * as Chartist from 'chartist';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AlertsService } from 'src/app/services/alerts/alerts.service';
@@ -12,7 +13,7 @@ import { MyApiService } from 'src/app/services/myApi/my-api.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
+  dataUser
   p: number = 1;
   e:any
   DEFAULT_PHOTO: string = 'https://i.imgur.com/jgJepiJ.jpg'
@@ -26,13 +27,16 @@ export class DashboardComponent implements OnInit {
     private router: Router,
     private alert: AlertsService,
     private spinner: NgxSpinnerService,
-    private myApi: MyApiService
+    private myApi: MyApiService,
+    private authService: AuthService
     ) { }
 
   ngOnInit(){
     this.getAllLeagues()
     this.getMyLeagues()
   }
+
+
 
   getAllLeagues(){
       this.spinner.show()

@@ -3,11 +3,11 @@
 </div>
 
 <div class="main-content">
-  <div class="row container mx-auto">
+  <div class="container mx-auto">
     <div class="row">
       <div
         *ngFor="let l of leagues | paginate: { itemsPerPage: 14, currentPage: p }"
-        class="col"
+        class="col-md-3 col-xs-12"
       >
         <div style="cursor: pointer"  class="card">
           <div class="card-body" >

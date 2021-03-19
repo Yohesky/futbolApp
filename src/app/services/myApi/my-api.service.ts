@@ -40,4 +40,8 @@ export class MyApiService {
     return this.http.getMyApi("teams/getTeams")
   }
 
+  sendEmail(data){
+    return this.http.post("email/send-mail",data)
+  }
+
 }

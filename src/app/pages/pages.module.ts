@@ -20,6 +20,7 @@ import { MyPositionsComponent } from './my-positions/my-positions.component';
 import { MyTeamsComponent } from './my-teams/my-teams.component';
 import { ListMatchesComponent } from './data-league/list-matches/list-matches.component';
 import { ListComponent } from './matches/list/list.component';
+import { MatchesComponent } from './matches/matches.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { ListComponent } from './matches/list/list.component';
     PagesComponent,
     DashboardComponent,
     DataLeagueComponent,
+    MatchesComponent,
     LeaguesComponent,
     PositionComponent,
     ScoresComponent,
@@ -44,6 +46,7 @@ import { ListComponent } from './matches/list/list.component';
     PagesComponent,
     DashboardComponent,
     DataLeagueComponent,
+    MatchesComponent,
     LeaguesComponent,
     PositionComponent,
     ScoresComponent,

@@ -15,6 +15,7 @@ export class ListMatchesComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log("?=")
     this.filterMatches()
   }
 

@@ -10,6 +10,7 @@ import { ApiService } from 'src/app/services/api/api.service';
   styleUrls: ['./matches.component.css']
 })
 export class MatchesComponent implements OnInit {
+  currentJustify = 'start';
   id:number = 0
   matches: any[] = []
   team: any = {}

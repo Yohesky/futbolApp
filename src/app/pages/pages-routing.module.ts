@@ -8,9 +8,8 @@ const routes: Routes = [
   {
     path: "home",
     component: PagesComponent,
+    canActivateChild: [AuthGuard],
     loadChildren: () => import('./child-routes.module').then(m => m.ChildRoutesModule),
-    canActivateChild: [AuthGuard]
-
   },
 ]
 

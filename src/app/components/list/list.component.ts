@@ -1,21 +1,24 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-list-matches',
-  templateUrl: './list-matches.component.html',
-  styleUrls: ['./list-matches.component.css']
+  selector: 'app-list',
+  templateUrl: './list.component.html',
+  styleUrls: ['./list.component.css']
 })
-export class ListMatchesComponent implements OnInit {
+export class ListComponent implements OnInit {
   @Input('type') type: string
   @Input('matches') matches:any[] = []
-  dataMatches: any[] = []
+  dataMatches:any[] = []
   p: number = 1;
   total: number
-
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges(){
     this.filterMatches()
+    console.log(this.matches)
   }
 
   filterMatches(){
@@ -32,12 +35,12 @@ export class ListMatchesComponent implements OnInit {
     }
 
     if(this.type === 'OTHERS'){
-      this.dataMatches = this.matches.filter(m => m.status !== 'SCHEDULED' && m.status !== 'FINISHED')
+      this.dataMatches = this.matches.filter(m => m.status === this.type)
       this.total = this.dataMatches.length
       console.log(this.dataMatches)
     }
-  }
 
+  }
 
   search(value:string){
     this.dataMatches = this.dataMatches.filter(m => m.homeTeam.name.toLowerCase().includes(value.toLowerCase()))

@@ -29,21 +29,20 @@
         <ng-container ngbNavItem>
           <a ngbNavLink>Completed</a>
           <ng-template ngbNavContent>
-            <app-list-matches type='FINISHED' [matches]='matches'></app-list-matches>
-
+            <app-list type='FINISHED' [matches]='matches'></app-list>
           </ng-template>
         </ng-container>
         <ng-container ngbNavItem>
           <a ngbNavLink>Pending</a>
           <ng-template ngbNavContent>
-            <app-list-matches type='SCHEDULED' [matches]='matches'></app-list-matches>
+            <app-list type='SCHEDULED' [matches]='matches'></app-list>
           </ng-template>
         </ng-container>
 
         <ng-container ngbNavItem>
           <a ngbNavLink>Others</a>
           <ng-template ngbNavContent>
-            <app-list-matches type='OTHERS' [matches]='matches'></app-list-matches>
+            <app-list type='OTHERS' [matches]='matches'></app-list>
           </ng-template>
         </ng-container>
       </nav>

@@ -18,9 +18,8 @@ import { TeamsComponent } from './teams/teams.component';
 import { MyLeaguesComponent } from './my-leagues/my-leagues.component';
 import { MyPositionsComponent } from './my-positions/my-positions.component';
 import { MyTeamsComponent } from './my-teams/my-teams.component';
-import { ListMatchesComponent } from './data-league/list-matches/list-matches.component';
-import { ListComponent } from './matches/list/list.component';
 import { MatchesComponent } from './matches/matches.component';
+import { ComponentsModule } from '../components/components.module';
 
 
 @NgModule({
@@ -39,8 +38,6 @@ import { MatchesComponent } from './matches/matches.component';
     MyLeaguesComponent,
     MyPositionsComponent,
     MyTeamsComponent,
-    ListMatchesComponent,
-    ListComponent
   ],
   exports: [
     PagesComponent,
@@ -55,8 +52,6 @@ import { MatchesComponent } from './matches/matches.component';
     MyLeaguesComponent,
     MyPositionsComponent,
     MyTeamsComponent,
-    ListMatchesComponent,
-    ListComponent
   ],
   imports: [
     CommonModule,
@@ -66,6 +61,7 @@ import { MatchesComponent } from './matches/matches.component';
     NgxSpinnerModule,
     NgxPaginationModule,
     NgbModule,
+    ComponentsModule
     ],
 })
 export class PagesModule {}
